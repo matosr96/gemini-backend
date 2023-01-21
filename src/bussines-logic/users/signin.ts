@@ -7,8 +7,10 @@ interface UserLogin extends PartialUser {
   token: string;
 }
 
-export const userLogin = async ({ password, email}: PartialUser): Promise<UserLogin | Error> => {
-  
+export const userLogin = async ({
+  password,
+  email,
+}: PartialUser): Promise<UserLogin | Error> => {
   const model = await getModel(Collection.USERS, UserSchemaMongo);
   const user = await model.findOne({ email: email });
 

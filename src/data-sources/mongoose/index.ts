@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const {MONGO_URL} = process.env;
+const {MONGODB_URL} = process.env;
 
 export interface InitMongooseOptions {
     mongoUrl: string;
@@ -9,7 +9,7 @@ export interface InitMongooseOptions {
 export const initMongoose = async ({mongoUrl}: InitMongooseOptions) => {
     const connection = mongoose.connection;
 
-    const connectionUrl = MONGO_URL || mongoUrl || "";
+    const connectionUrl = MONGODB_URL || mongoUrl || "";
 
     connection.on('error', (error) => {
         console.error(`Error in Mongoose connection: ${JSON.stringify(error)}`);

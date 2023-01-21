@@ -10,8 +10,7 @@ export const userSignup = async ({
   email,
   phone,
   photo,
-  password,
-  institution,
+  password
 }: PartialUser): Promise<any> => {
   const model = await getModel(Collection.USERS, UserSchemaMongo);
   const user = await model.findOne({ email: email });
@@ -31,8 +30,7 @@ export const userSignup = async ({
       email,
       phone,
       photo,
-      password,
-      institution,
+      password
     });
 
     await user.save();

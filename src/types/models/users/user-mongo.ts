@@ -10,7 +10,6 @@ export const UserSchemaMongo = new Schema<User>(
     password: { type: String, required: true },
     phone: { type: String, required: true, unique: true },
     photo: { type: String },
-    institution: { type: String, required: true },
     status: { type: String, required: false, default: "active" },
   },
   {

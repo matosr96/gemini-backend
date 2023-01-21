@@ -24,9 +24,9 @@
     "typescript": "^4.6.4"
   },
   "scripts": {
-    "dev": "nodemon src/server/server.ts",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "deploy": "git add . && git commit -m 'deploy' && git push heroku"
+    "build": "tsc",
+    "dev": "ts-node-dev src/server",
+    "start": "node build/server"
   },
   "keywords": [],
   "author": "",

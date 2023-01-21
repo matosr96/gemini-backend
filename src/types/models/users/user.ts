@@ -8,6 +8,5 @@ export interface User {
   phone: string;
   photo: string;
   password: string;
-  institution: string;
   status: string;
 }

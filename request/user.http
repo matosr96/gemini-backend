@@ -1,0 +1,11 @@
+POST http://localhost:4000/api/v1/user-signup HTTP/1.1
+content-type: application/json
+
+{
+    "name": "Edgar",
+    "lastname": "Matos",
+    "email": "yunsde26@gmail.com",
+    "phone": "3226589914",
+    "photo": "photo.jpg",
+    "password": "1234",
+}

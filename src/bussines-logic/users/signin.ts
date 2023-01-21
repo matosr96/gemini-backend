@@ -3,11 +3,11 @@ import jwt from "jsonwebtoken";
 import { Collection, getModel } from "../../constants-definitions";
 import { PartialUser, UserSchemaMongo } from "../../types";
 
-interface UserSignin extends PartialUser {
+interface UserLogin extends PartialUser {
   token: string;
 }
 
-export const userSignin = async ({ email, password }: PartialUser): Promise<UserSignin | Error> => {
+export const userLogin = async ({ password, email}: PartialUser): Promise<UserLogin | Error> => {
   
   const model = await getModel(Collection.USERS, UserSchemaMongo);
   const user = await model.findOne({ email: email });
@@ -19,26 +19,17 @@ export const userSignin = async ({ email, password }: PartialUser): Promise<User
   const match = await bcrypt.compare(password || "", user.password);
 
   if (!match) {
-    return new Error("Contraseña o correo incorrecto");
+    return new Error("Contrasena incorrecta");
   }
 
   const token = jwt.sign(
-    {
-      uuid: user.uuid,
-      name: user.name,
-      email: user.email
-    },
+    { uuid: user.uuid },
     process.env.JWT_SECRET_KEY || "",
-    { expiresIn: "24h" }
+    { expiresIn: "5h" }
   );
 
   return {
     token,
-    name: user.name,
-    lastname: user.lastname,
-    photo: user.photo,
-    uuid: user.uuid,
-    email: user.email,
-    phone: user.phone,
+    ...user._doc,
   };
 };
